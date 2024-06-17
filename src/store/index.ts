@@ -2,9 +2,11 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 import movies from "./slices/movies-slice";
+import movieInformation from './slices/movie-information-slice';
 
 const rootReducer = combineReducers({
   movies: movies,
+  movieInformation: movieInformation,
 });
 
 const resultConfigureStore = configureStore({

@@ -14,7 +14,11 @@ const CurrentArticle: FC<CurrentArticleProps> = ({ movieItem }) => {
         <div className="current-article__id">Card ID: {movieItem.id}</div>
         <img
           loading="lazy"
-          // src={imageIsLoading ? `${placeholderImage}` : `${urls.regular}`}
+          src={
+            !movieItem.poster?.url
+              ? `${placeholderImage}`
+              : `${movieItem.poster?.url}`
+          }
           className="current-article__picture"
           // alt={alt_description}
           onLoad={() => setIsLoading(false)}

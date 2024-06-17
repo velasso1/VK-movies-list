@@ -1,13 +1,14 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Card from "./ui/card";
 import { IMovieItem } from "../types/card-props";
 import { useAppSelector } from "../store";
 import { RootState } from "../store";
 // import { getMorePictures } from "../store/slices/movies-slice";
-// import { useAppDispatch } from "../store";
+import { useAppDispatch } from "../store";
+import GenresDropdown from "./ui/genres-dropdown";
 
 const CardList: FC = () => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   // const [state, setState] = useState({
   //   checked: true,
@@ -29,11 +30,6 @@ const CardList: FC = () => {
 
   return (
     <>
-      <div className="filter">
-        Фильтровать: FILTER BY <strong>GENRES</strong>, <strong>RATING</strong>,{" "}
-        <strong>YEAR</strong>
-      </div>
-
       <div className="card-list">
         {!cardInfo.length || !cardInfo ? (
           <div>Пока что здесь ничего нет</div>

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { IMovieItem } from "../../types/card-props";
 import { useNavigate } from "react-router-dom";
 import placeholderImage from "../../pictures/placeholder.webp";
@@ -12,6 +12,7 @@ interface CardProps {
 const Card: FC<CardProps> = ({ movieItem }) => {
   // const [imageIsLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
 
   const movieName = movieItem.name ? movieItem.name : movieItem.alternativeName;
   return (
