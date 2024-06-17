@@ -1,0 +1,21 @@
+// IMPORT RESET STYLES
+@import "reset.scss";
+// ============================================
+
+// IMPORT FONTS
+@import "./fonts.scss";
+// ============================================
+
+// GENERAL STYLES
+ body {
+    font-family: 'Open Sans', sans-serif;
+ }
+// ============================================
+
+// IMPORT COMPONENT STYLES
+@import "./header.scss";
+@import "./card.scss";
+@import "./card-list.scss";
+@import "./current-article.scss";
+@import "./start-page.scss";
+// ============================================
