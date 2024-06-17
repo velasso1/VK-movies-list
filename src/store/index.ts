@@ -1,19 +1,19 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
-import pictures from "./slices/pictures-slice";
+import movies from "./slices/movies-slice";
 
-const rootReducer = combineReducers({ 
-  pictures: pictures,
+const rootReducer = combineReducers({
+  movies: movies,
 });
- 
+
 const resultConfigureStore = configureStore({
   reducer: rootReducer,
 });
 
 export default resultConfigureStore;
 
-export type RootState = ReturnType<typeof resultConfigureStore.getState>; 
+export type RootState = ReturnType<typeof resultConfigureStore.getState>;
 export type AppDispatch = typeof resultConfigureStore.dispatch;
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();

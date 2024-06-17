@@ -1,13 +1,13 @@
 import { FC, useEffect } from "react";
 import { useAppDispatch } from "../store";
-import { getPictures } from "../store/slices/pictures-slice";
+import { getMovies } from "../store/slices/movies-slice";
 import CardList from "../components/card-list";
 
 const StartPage: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getPictures());
+    dispatch(getMovies());
   }, [dispatch]);
 
   return (

@@ -1,9 +1,23 @@
-export interface ICardProps {
-  id: string;
-  urls: {
-    full: string;
-    raw: string;
-    regular: string;
+interface IGenres {
+  [name: string]: string[];
+}
+
+export interface IMovieItem {
+  id: number | null;
+  name: string;
+  alternativeName?: string;
+  poster?: {
+    url: string;
   };
-  alt_description: string;
+  description: string;
+  rating: {
+    kp: number | null;
+    imdb: number | null;
+  };
+  year: number | null;
+  genres: IGenres[];
+}
+
+export interface ICardProps {
+  docs: IMovieItem[];
 }

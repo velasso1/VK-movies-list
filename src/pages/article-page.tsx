@@ -3,40 +3,41 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../store";
 import {
-  getCurrentPicture,
-  clearOnePicture,
-} from "../store/slices/pictures-slice";
+  getOneMovie,
+  // clearOnePicture,
+} from "../store/slices/movies-slice";
 
 import CurrentArticle from "../components/current-article";
+import { IMovieItem } from "../types/card-props";
 
 const ArticlePage: FC = () => {
-  const { pictureId } = useParams<{ pictureId: string }>();
+  const { movieId } = useParams<{ movieId: string }>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (pictureId) {
-      dispatch(getCurrentPicture(pictureId));
+    if (movieId) {
+      dispatch(getOneMovie(movieId));
     }
-  }, [dispatch, pictureId]);
+  }, [dispatch, movieId]);
 
-  const { id, urls, alt_description } = useAppSelector(
-    (state) => state.pictures.currentPicture
+  const movieItem: IMovieItem = useAppSelector(
+    (state) => state.movies.currentMovie
   );
 
-  const returnHandler = (): void => {
-    navigate("/test-alfa-preview");
-    dispatch(clearOnePicture());
-  };
+  // const returnHandler = (): void => {
+  //   navigate("/");
+  //   dispatch(clearOnePicture());
+  // };
 
   return (
     <>
       <div className="back-button">
-        <button className="return-button" onClick={() => returnHandler()}>
+        {/* <button className="return-button" onClick={() => returnHandler()}>
           &#8592; Вернуться
-        </button>
+        </button> */}
       </div>
-      <CurrentArticle id={id} urls={urls} alt_description={alt_description} />
+      <CurrentArticle movieItem={movieItem} />
     </>
   );
 };

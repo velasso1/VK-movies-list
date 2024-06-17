@@ -9,11 +9,8 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/test-alfa-preview" element={<StartPage />} />
-        <Route
-          path="/test-alfa-preview/current-card/:pictureId"
-          element={<ArticlePage />}
-        />
+        <Route path="/" element={<StartPage />} />
+        <Route path="/current-card/:movieId" element={<ArticlePage />} />
       </Routes>
     </>
   );

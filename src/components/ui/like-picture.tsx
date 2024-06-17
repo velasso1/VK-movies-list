@@ -1,32 +1,33 @@
 import { FC, useEffect, useState } from "react";
-import LikeImage from "../../pictures/like.svg";
-import { likePicture } from "../../store/slices/pictures-slice";
+import StarImage from "../../pictures/star.svg";
+// import { likePicture } from "../../store/slices/movies-slice";
 import { useAppDispatch, useAppSelector } from "../../store";
 
 interface IlikeProps {
-  id: string;
+  id: number | null;
 }
 
 const Like: FC<IlikeProps> = ({ id }) => {
-  const dispatch = useAppDispatch();
-  const likedPictures = useAppSelector((state) => state.pictures.likedPictures);
+  // const dispatch = useAppDispatch();
+  const likedMovies = useAppSelector((state) => state.movies.likedMovies);
   const [color, setColor] = useState("0");
 
-  useEffect(() => {
-    setColor(likedPictures.includes(id) ? "350" : "0");
-  }, [id, likedPictures]);
+  // useEffect(() => {
+  //   setColor(color === "0" ? "350" : "0");
+  // }, [color, likedMovies]);
 
   return (
     <>
       <img
         onClick={(e) => {
           e.stopPropagation();
-          dispatch(likePicture(id));
+          // dispatch(likePicture(id));
+          setColor(color === "0" ? "350" : "0");
         }}
         className="card__like"
-        src={LikeImage}
+        src={StarImage}
         alt="like"
-        style={{ filter: `saturate(${color}%)` }}
+        style={{ fill: `saturate(${color}%)` }}
       />
     </>
   );

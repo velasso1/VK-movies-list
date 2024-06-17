@@ -1,81 +1,57 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Card from "./ui/card";
-import { ICardProps } from "../types/card-props";
+import { IMovieItem } from "../types/card-props";
 import { useAppSelector } from "../store";
 import { RootState } from "../store";
-import { getMorePictures } from "../store/slices/pictures-slice";
-import { useAppDispatch } from "../store";
+// import { getMorePictures } from "../store/slices/movies-slice";
+// import { useAppDispatch } from "../store";
 
 const CardList: FC = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const [state, setState] = useState({
-    checked: true,
-  });
-  const [pageCount, setPageCount] = useState(1);
+  // const [state, setState] = useState({
+  //   checked: true,
+  // });
+  // const [pageCount, setPageCount] = useState(1);
 
-  const cardInfo: ICardProps[] = useAppSelector(
-    (state: RootState) => state.pictures.pictures
+  const cardInfo: IMovieItem[] = useAppSelector(
+    (state: RootState) => state.movies.movies
   );
 
-  const likedPosts: string[] = useAppSelector(
-    (state) => state.pictures.likedPictures
-  );
+  // const likedPosts: string[] = useAppSelector(
+  //   (state) => state.movies.likedMovies
+  // );
 
-  const newCardInfo =
-    state.checked === true
-      ? cardInfo
-      : cardInfo.filter((item) => likedPosts.includes(item.id));
+  // const newCardInfo =
+  //   state.checked === true
+  //     ? cardInfo
+  //     : cardInfo.filter((item) => likedPosts.includes(item.id));
 
   return (
     <>
       <div className="filter">
-        Показывать:
-        <input type="checkbox" name="all" checked={state.checked} />
-        <label
-          onClick={() => {
-            setState({ ...state, checked: true });
-          }}
-          htmlFor="all"
-        >
-          Все
-        </label>
-        <input type="checkbox" name="liked" checked={!state.checked} />
-        <label
-          onClick={() => {
-            setState({ ...state, checked: false });
-          }}
-          htmlFor="liked"
-        >
-          Понравившиеся
-        </label>
+        Фильтровать: FILTER BY <strong>GENRES</strong>, <strong>RATING</strong>,{" "}
+        <strong>YEAR</strong>
       </div>
 
       <div className="card-list">
-        {!newCardInfo.length || !newCardInfo ? (
+        {!cardInfo.length || !cardInfo ? (
           <div>Пока что здесь ничего нет</div>
         ) : (
-          newCardInfo.map((item) => {
-            return (
-              <Card
-                key={item.id}
-                id={item.id}
-                urls={item.urls}
-                alt_description={item.alt_description}
-              />
-            );
+          cardInfo.map((item) => {
+            return <Card key={item.id} movieItem={item} />;
           })
         )}
       </div>
       <div className="back-button">
         <button
           className="return-button"
-          onClick={() => {
-            dispatch(getMorePictures(pageCount));
-            setPageCount(pageCount + 1);
-          }}
+          // onClick={() => {
+          //   // dispatch(getMorePictures(pageCount));
+          //   setPageCount((prev) => prev + 1);
+          // }}
         >
-          Загрузить еще
+          Следующая страница
         </button>
       </div>
     </>
