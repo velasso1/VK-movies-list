@@ -24,7 +24,10 @@ const GenresDropdown: FC = () => {
               <div
                 className="filter__genres-item"
                 key={key}
-                onClick={() => dispatch(toggleGenre(item.name))}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(toggleGenre(item.name));
+                }}
                 style={{
                   backgroundColor: selectedGenres.includes(item.name)
                     ? "tomato"

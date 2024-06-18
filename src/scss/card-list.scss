@@ -1,28 +1,44 @@
 .card-list {
-    display: grid;
-    gap: 30px;
-    grid-template-areas: ". . . .";
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    padding-bottom: 50px;
-} 
+  display: grid;
+  gap: 30px;
+  grid-template-areas: ". . . .";
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  padding-bottom: 50px;
+}
+
+.previous-page-button,
+.next-page-button {
+  margin: 0 50px;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: default;
+  }
+}
 
 @media screen and (max-width: 1200px) {
-    .card-list {
-        grid-template-areas: ". . .";
-    }
+  .card-list {
+    grid-template-areas: ". . .";
+  }
 }
 
 @media screen and (max-width: 992px) {
-    .card-list {
-        grid-template-areas: ". .";
-    }
+  .card-list {
+    grid-template-areas: ". .";
+  }
 }
 
 @media screen and (max-width: 670px) {
-    .card-list {
-        grid-template-areas: ".";
-    }
+  .card-list {
+    grid-template-areas: ".";
+  }
 }

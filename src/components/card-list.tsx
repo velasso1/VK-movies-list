@@ -1,19 +1,27 @@
-import { FC, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import Card from "./ui/card";
 import { IMovieItem } from "../types/card-props";
-import { useAppSelector } from "../store";
-import { RootState } from "../store";
-// import { getMorePictures } from "../store/slices/movies-slice";
-import { useAppDispatch } from "../store";
-import GenresDropdown from "./ui/genres-dropdown";
+import { RootState, useAppDispatch, useAppSelector } from "../store";
+import { getMovies } from "../store/slices/movies-slice";
+import { useNavigate } from "react-router-dom";
+import Pagination from "./ui/pagination";
 
 const CardList: FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  // const [state, setState] = useState({
-  //   checked: true,
-  // });
-  // const [pageCount, setPageCount] = useState(1);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(getMovies(page));
+    navigate(`/page/${page}`);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [dispatch, page]);
 
   const cardInfo: IMovieItem[] = useAppSelector(
     (state: RootState) => state.movies.movies
@@ -30,6 +38,7 @@ const CardList: FC = () => {
 
   return (
     <>
+      <Pagination page={page} setPage={setPage} />
       <div className="card-list">
         {!cardInfo.length || !cardInfo ? (
           <div>Пока что здесь ничего нет</div>
@@ -39,17 +48,7 @@ const CardList: FC = () => {
           })
         )}
       </div>
-      <div className="back-button">
-        <button
-          className="return-button"
-          // onClick={() => {
-          //   // dispatch(getMorePictures(pageCount));
-          //   setPageCount((prev) => prev + 1);
-          // }}
-        >
-          Следующая страница
-        </button>
-      </div>
+      <Pagination page={page} setPage={setPage} />
     </>
   );
 };

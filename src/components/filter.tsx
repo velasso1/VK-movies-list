@@ -1,7 +1,9 @@
-import { FC, useState, useEffect } from "react";
-import GenresDropdown from "./ui/genres-dropdown";
+import { FC, useState, useEffect, MouseEvent } from "react";
 import { useAppDispatch } from "../store";
 import { getGenres } from "../store/slices/movie-information-slice";
+
+import GenresDropdown from "./ui/genres-dropdown";
+import YearsDropdown from "./ui/years-dropdown";
 
 type ILocalVisibleState = {
   genres: boolean;
@@ -29,31 +31,34 @@ const Filter: FC = () => {
 
   return (
     <div className="filter">
-      <div className="filter__genres">
-        <button
-          className="filter__button"
-          onClick={() => visibleHandler("genres")}
+      <div className="filter__genres" onClick={() => visibleHandler("genres")}>
+        <div
+          className="filter__button-genres"
+          style={{ backgroundColor: visibleModal.genres ? "#ccc" : "#fff" }}
         >
-          Жанр
-        </button>
-        {visibleModal.genres && <GenresDropdown />}
+          <div className="filter__button-title">Жанр</div>
+          <div className="filter__button-icon"></div>
+          {visibleModal.genres && <GenresDropdown />}
+        </div>
       </div>
-      <div className="filter__years">
-        {" "}
-        <button
-          className="filter__button"
-          onClick={() => visibleHandler("years")}
+      <div className="filter__years" onClick={() => visibleHandler("years")}>
+        <div
+          className="filter__button-years"
+          style={{ backgroundColor: visibleModal.years ? "#ccc" : "#fff" }}
         >
-          Год
-        </button>
+          <div className="filter__button-title">Год</div>
+          <div className="filter__button-icon"></div>
+        </div>
+        {visibleModal.years && <YearsDropdown />}
       </div>
       <div className="filter__rating">
-        <button
-          className="filter__button"
+        <div
+          className="filter__button-rating"
           onClick={() => visibleHandler("rating")}
         >
-          Рейтинг
-        </button>
+          <div className="filter__button-title">Рейтинг</div>
+          <div className="filter__button-icon"></div>
+        </div>
       </div>
     </div>
   );

@@ -64,15 +64,18 @@ const movies = createSlice({
 
 // Actions
 
-export const getMovies = () => {
+export const getMovies = (page: number) => {
   return async (dispatch: AppDispatch): Promise<void> => {
     try {
-      await fetch("https://api.kinopoisk.dev/v1.4/movie?page=1&limit=50&type=movie", {
-        method: "GET",
-        headers: {
-          "X-API-KEY": `${import.meta.env.VITE_API_KEY}`,
-        },
-      }).then((resp) =>
+      await fetch(
+        `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50&type=movie`,
+        {
+          method: "GET",
+          headers: {
+            "X-API-KEY": `${import.meta.env.VITE_API_KEY}`,
+          },
+        }
+      ).then((resp) =>
         resp.json().then((data) => dispatch(moviesReceived(data)))
       );
     } catch (error) {

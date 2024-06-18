@@ -7,10 +7,6 @@ import Filter from "../components/filter";
 const StartPage: FC = () => {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getMovies());
-  }, [dispatch]);
-
   return (
     <>
       <Filter />

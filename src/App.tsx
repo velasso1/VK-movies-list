@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import Header from "./components/header";
 import StartPage from "./pages/start-page";
@@ -9,7 +9,8 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<StartPage />} />
+        <Route path="/" element={<Navigate to="/page/1" replace />} />
+        <Route path="/page/:page" element={<StartPage />} />
         <Route path="/current-card/:movieId" element={<ArticlePage />} />
       </Routes>
     </>
