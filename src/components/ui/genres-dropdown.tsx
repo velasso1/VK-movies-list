@@ -30,7 +30,7 @@ const GenresDropdown: FC = () => {
                 }}
                 style={{
                   backgroundColor: selectedGenres.includes(item.name)
-                    ? "tomato"
+                    ? "#4b6df6"
                     : "white",
                 }}
               >

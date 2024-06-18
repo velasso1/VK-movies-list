@@ -62,6 +62,9 @@ const movies = createSlice({
   },
 });
 
+
+// .then((resp) => resp.json().then((data) => console.log(data);
+
 // Actions
 
 export const getMovies = (page: number) => {

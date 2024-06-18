@@ -17,7 +17,7 @@ const CardList: FC = () => {
     navigate(`/page/${page}`);
 
     window.scrollTo({
-      top: 0,
+      top: 150,
       left: 0,
       behavior: "smooth",
     });

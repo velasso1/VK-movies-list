@@ -4,11 +4,17 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 0 0 100px 0;
 
   &__picture {
     width: 500px;
     height: 500px;
     object-fit: cover;
+    border-radius: 15px;
+    margin-right: 20px;
+    -webkit-box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
+    box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
   }
 
   &__text {
@@ -39,7 +45,60 @@
     padding: 5px 0;
     color: #ccc;
   }
+
+
+
+  &__year, 
+  &__genres,
+  &__description,
+  &__description-full {
+    text-align: left;
+    font-size: 17px;
+    line-height: 25px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 20px 0;
+    background-color: #EEF5FF;
+    margin: 20px 0 20px 10px;
+    transition: .2s;
+
+    div {
+      padding: 0 15px;
+    }
+
+    &:hover {
+      background-color: #4b6df6;
+      color: #fff;
+      cursor: default;
+      -webkit-box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
+      -moz-box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
+      box-shadow: 1px 1px 19px 2px rgba(0, 0, 0, 0.17);
+    }
+  }
+
+  &__description {
+    min-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__description-full {
+    min-height: 200px;
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation-name: expand;
+    animation-duration: 1s;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
+ 
 
 .back-button {
   display: flex;

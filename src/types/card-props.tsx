@@ -1,5 +1,5 @@
 interface IGenres {
-  [name: string]: string[];
+  name: string;
 }
 
 export interface IMovieItem {

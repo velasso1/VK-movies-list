@@ -1,3 +1,22 @@
+@mixin filterButtonHover {
+    position: relative;
+    display: flex;
+    padding: 10px;
+    width: 200px;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #ccc;
+        cursor: pointer;
+    }
+}
+
 .filter {
   position: relative;
   display: grid;
@@ -29,7 +48,6 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    // position: absolute;
     border-radius: 15px;
     background-color: #fff;
     width: 700px;
@@ -37,13 +55,7 @@
     border: 2px solid #ccc;
     border-radius: 4px;
     text-align: left;
-    // left: 0;
   }
-
-  //   &__genres {
-  //     display: flex;
-  //     justify-content: space-between;
-  //   }
 
   &__genres-item {
     font-size: 15px;
@@ -61,36 +73,42 @@
     }
   }
 
+  &__button-genres-dark,
+  &__button-years-dark,
+  &__button-rating-dark {
+    @include filterButtonHover();
+    background-color: #ccc;
+  }
+
   &__button-genres,
   &__button-years,
   &__button-rating {
-    position: relative;
-    display: flex;
-    padding: 10px;
-    width: 200px;
-    align-items: center;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
+    @include filterButtonHover();
     background-color: #ffffff;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: 0.5s;
+  }
 
-    &:hover {
-      background-color: #ccc;
-      cursor: pointer;
-    }
+  &__button-icon-start {
+    content: url("../pictures/arrow.svg");
+    max-width: 15px;
+    transform: rotateX(180deg);
   }
 
   &__button-icon {
     content: url("../pictures/arrow.svg");
     max-width: 15px;
+    transform: rotateX(0);
   }
 
   // years dropdown styles
 
-  &__years-container {
+  &__years,
+  &__rating {
+    position: relative;
+  }
+
+  &__years-container,
+  &__rating-container {
+    width: 100%;
     background-color: #fff;
     position: absolute;
     z-index: 5;
@@ -100,7 +118,20 @@
     text-align: center;
   }
 
-  &__years-item {
+  &__years-item-selected,
+  &__rating-item-selected {
+    padding: 10px;
+    border: 1px solid #4b6df6;
+    background-color: #4b6df6;
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid #ccc;
+      }
+  }
+
+  &__years-item,
+  &__rating-item {
     padding: 10px;
     border: 1px solid #fff;
 
@@ -109,4 +140,8 @@
       border: 1px solid #ccc;
     }
   }
+
+  // Rating dropdown styles
+
+
 }

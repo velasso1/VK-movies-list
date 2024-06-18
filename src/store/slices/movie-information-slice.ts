@@ -7,6 +7,8 @@ const initialState: MovieInformationState = {
     genres: [],
     rating: [],
     toggleGenres: [],
+    toggleRatings: [],
+    toggleYears: [],
 }
 
 const movieInformation = createSlice({
@@ -22,7 +24,22 @@ const movieInformation = createSlice({
       } else {
         state.toggleGenres.push(action.payload);
       }      
-    }
+    },
+    toggleYear(state, action: PayloadAction<string>) {
+      if (state.toggleYears.includes(action.payload)) {
+        state.toggleYears = state.toggleYears.filter((item) => item !== action.payload)
+      } else {
+        state.toggleYears.push(action.payload);
+      }      
+    },
+    toggleRating(state, action: PayloadAction<string>) {
+      if (state.toggleRatings.includes(action.payload)) {
+        state.toggleRatings = state.toggleRatings.filter((item) => item !== action.payload)
+      } else {
+        state.toggleRatings.push(action.payload);
+      }      
+    },
+    
   }
 })
 
@@ -44,8 +61,41 @@ export const getGenres = () => {
   }
 }
 
+// Helpers
+
+// Function for generate url with filters
+export const generateUrl = (state: MovieInformationState, page: string): string => {
+  let generalUrl: string = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50`
+
+  const {toggleGenres, toggleRatings, toggleYears} = state;
+  if (toggleGenres.length) {
+    for (let i = 0; i < toggleGenres.length; i++) {
+      generalUrl += `&genres.name=${toggleGenres[i]}`
+    }
+  }
+
+  if (toggleYears.length) {
+    for (let i = 0; i < toggleYears.length; i++) {
+      generalUrl += `&releaseYears.start=${toggleYears[i]}`
+    }
+  }
+
+  if (toggleRatings.length) {
+    for (let i = 0; i < toggleRatings.length; i++) {
+      generalUrl += `&rating.imdb=${toggleRatings[i]}`
+    }
+  }
+
+  return generalUrl;
+}
 
 
-export const { receivedInformation, toggleGenre } = movieInformation.actions;
+
+export const { 
+  receivedInformation, 
+  toggleGenre, 
+  toggleYear, 
+  toggleRating 
+} = movieInformation.actions;
   
 export default movieInformation.reducer;

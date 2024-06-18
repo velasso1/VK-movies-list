@@ -10,4 +10,6 @@ export interface MovieInformationState {
     genres: InfromationItem[],
     rating: InfromationItem[],
     toggleGenres: string[], 
+    toggleYears: string[],
+    toggleRatings: string[],
 }
