@@ -7,10 +7,7 @@ const Header: FC = () => {
       <header className="header">
         <div className="container">
           <div className="header__contacts">
-            <Link
-              to="https://github.com/velasso1/test-case-vk1"
-              target="_blank"
-            >
+            <Link to="https://github.com/velasso1/test-case-vk" target="_blank">
               Code on GitHub
             </Link>
             <Link to="https://t.me/reynold495" target="_blank">
