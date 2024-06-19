@@ -1,4 +1,16 @@
-# Test case for internship in Alfa
+# Test case for internship in VK
+### React + TypeScript + Vite Template
+---
+### Author: Alexandr Vasin | alexandr.vasin01@gmail.com
+---
+### For launch this app:
+1. Clone this repository: `git clone https://github.com/velasso1/test-case-vk.git`
+2. Go to the app folder: `cd test-case-vk`
+3. Install dependencies: `npm i`
+4. Build app: `npm run build`
+5. Launch the app: `npm run preview`
+
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
