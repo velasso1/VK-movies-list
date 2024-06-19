@@ -1,14 +1,14 @@
 import { FC, useState } from "react";
 import StarImage from "../../pictures/star.svg";
-import { useAppDispatch, useAppSelector } from "../../store";
+// import { useAppSelector } from "../../store";
 
 interface IlikeProps {
   id: number | null;
 }
 
-const Like: FC<IlikeProps> = ({ id }) => {
+const Like: FC<IlikeProps> = () => {
   // const dispatch = useAppDispatch();
-  const likedMovies = useAppSelector((state) => state.movies.likedMovies);
+  // const likedMovies = useAppSelector((state) => state.movies.likedMovies);
   const [color, setColor] = useState("0");
 
   // useEffect(() => {

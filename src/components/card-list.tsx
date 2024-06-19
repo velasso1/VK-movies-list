@@ -4,7 +4,6 @@ import { RootState, useAppDispatch, useAppSelector } from "../store";
 import { getMovies } from "../store/slices/movies-slice";
 import { useNavigate } from "react-router-dom";
 import { generateUrl } from "../utils/url-generator";
-import { writePageToState } from "../store/slices/movie-information-slice";
 
 import Card from "./ui/card";
 import Loader from "./ui/loader";
