@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header: FC = () => {
   return (
     <>
-      <div className="header">
+      <header className="header">
         <div className="container">
           <div className="header__contacts">
             <Link
@@ -18,7 +18,7 @@ const Header: FC = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 };

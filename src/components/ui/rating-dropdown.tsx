@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { toggleRating } from "../../store/slices/movie-information-slice";
+
 import config from "../../../auxuliary.json";
 
 const RatingDropdown: FC = () => {
@@ -10,10 +11,14 @@ const RatingDropdown: FC = () => {
     (state) => state.movieInformation.toggleRatings
   );
 
+  const requestStatus = useAppSelector((state) => state.movies.status);
+
   return (
     <div className="filter__rating-dropdown">
       <div
-        className="filter__rating-container"
+        className={`filter__rating-container${
+          requestStatus === "dataReceived" ? "" : "-blocked"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {config.rating.map((item, key) => {

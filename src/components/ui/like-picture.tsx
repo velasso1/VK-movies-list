@@ -1,6 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import StarImage from "../../pictures/star.svg";
-// import { likePicture } from "../../store/slices/movies-slice";
 import { useAppDispatch, useAppSelector } from "../../store";
 
 interface IlikeProps {

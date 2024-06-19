@@ -46,9 +46,7 @@
     color: #ccc;
   }
 
-
-
-  &__year, 
+  &__year,
   &__genres,
   &__description,
   &__description-full {
@@ -59,9 +57,9 @@
     justify-content: space-between;
     border-radius: 5px;
     padding: 20px 0;
-    background-color: #EEF5FF;
+    background-color: #eef5ff;
     margin: 20px 0 20px 10px;
-    transition: .2s;
+    transition: 0.2s;
 
     div {
       padding: 0 15px;
@@ -98,13 +96,32 @@
     }
   }
 }
- 
+
+.previous-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-back {
+  background-color: #fff;
+}
 
 .back-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  background-color: #fff;
+  margin-bottom: 50px;
 }
 
 // responsive design

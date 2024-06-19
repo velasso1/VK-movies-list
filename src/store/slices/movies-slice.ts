@@ -2,14 +2,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "../index.ts";
 import { ICardProps, IMovieItem } from "../../types/card-props.tsx";
 
-interface IPictureState {
+type IStatus = "loadingData" | "dataReceived";
+
+interface IMovieState {
+  status: IStatus;
   movies: IMovieItem[];
   likedMovies: string[];
   currentMovie: IMovieItem;
+  pages: number;
 }
 
-const initialState: IPictureState = {
+const initialState: IMovieState = {
+  status: "dataReceived",
   movies: [],
+  pages: 1,
   likedMovies: [],
   currentMovie: {
     id: null,
@@ -32,11 +38,15 @@ const movies = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    moviesReceived(state: IPictureState, action: PayloadAction<ICardProps>) {
+    moviesReceived(state: IMovieState, action: PayloadAction<ICardProps>) {
       state.movies = action.payload.docs;
+      state.pages = action.payload.pages;
     },
-    oneMovieReceived(state: IPictureState, action: PayloadAction<IMovieItem>) {
+    oneMovieReceived(state: IMovieState, action: PayloadAction<IMovieItem>) {
       state.currentMovie = action.payload;
+    },
+    changeRequestStatus(state: IMovieState, action: PayloadAction<IStatus>) {
+      state.status = action.payload;
     },
     // clearOnePicture(state: IPictureState) {
     //   state.currentPicture = initialState.currentPicture;
@@ -62,24 +72,24 @@ const movies = createSlice({
   },
 });
 
-
 // .then((resp) => resp.json().then((data) => console.log(data);
 
 // Actions
 
-export const getMovies = (page: number) => {
+export const getMovies = (page: string, url: string) => {
   return async (dispatch: AppDispatch): Promise<void> => {
     try {
-      await fetch(
-        `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50&type=movie`,
-        {
-          method: "GET",
-          headers: {
-            "X-API-KEY": `${import.meta.env.VITE_API_KEY}`,
-          },
-        }
-      ).then((resp) =>
-        resp.json().then((data) => dispatch(moviesReceived(data)))
+      dispatch(changeRequestStatus("loadingData"));
+      await fetch(`${url}`, {
+        method: "GET",
+        headers: {
+          "X-API-KEY": `${import.meta.env.VITE_API_KEY}`,
+        },
+      }).then((resp) =>
+        resp.json().then((data) => {
+          dispatch(moviesReceived(data));
+          dispatch(changeRequestStatus("dataReceived"));
+        })
       );
     } catch (error) {
       console.error(error);
@@ -120,6 +130,7 @@ export const getOneMovie = (id: string) => {
 export const {
   moviesReceived,
   oneMovieReceived,
+  changeRequestStatus,
   // clearOnePicture,
   // likePicture,
   // deleteCard,

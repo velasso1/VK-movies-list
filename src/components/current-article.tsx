@@ -1,7 +1,9 @@
 import { FC, useState } from "react";
 import { IMovieItem } from "../types/card-props";
-import placeholderImage from "../pictures/placeholder.webp";
 import { useNavigate } from "react-router-dom";
+
+import placeholderImage from "../pictures/placeholder.webp";
+import { useAppSelector } from "../store";
 
 interface CurrentArticleProps {
   movieItem: IMovieItem;
@@ -9,12 +11,16 @@ interface CurrentArticleProps {
 
 const CurrentArticle: FC<CurrentArticleProps> = ({ movieItem }) => {
   const navigate = useNavigate();
-  // const [imageIsLoading, setIsLoading] = useState(true);
   const [expand, setExpand] = useState(false);
+
+  const page = useAppSelector((state) => state.movieInformation.page);
   return (
     <>
-      <div className="back">
-        <button className="back-button" onClick={() => navigate(-1)}>
+      <div className="previous-button">
+        <button
+          className="button-back"
+          onClick={() => navigate(`/page/${page}`)}
+        >
           Назад
         </button>
       </div>
@@ -29,8 +35,6 @@ const CurrentArticle: FC<CurrentArticleProps> = ({ movieItem }) => {
                 : `${movieItem.poster?.url}`
             }
             className="current-article__picture"
-            // alt={alt_description}
-            // onLoad={() => setIsLoading(false)}
           />
         </div>
         <div className="current-article__text">

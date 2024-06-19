@@ -1,20 +1,31 @@
 @mixin filterButtonHover {
-    position: relative;
-    display: flex;
-    padding: 10px;
-    width: 200px;
-    align-items: center;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: 0.5s;
+  position: relative;
+  display: flex;
+  padding: 10px;
+  width: 200px;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: 0.5s;
 
-    &:hover {
-        background-color: #ccc;
-        cursor: pointer;
-    }
+  &:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+}
+
+@mixin containerStyles {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  z-index: 5;
+  margin: 8px 0 0 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
 }
 
 .filter {
@@ -61,6 +72,7 @@
     font-size: 15px;
     padding: 10px;
     border: 1px solid #fff;
+    // background-color: #ccc;
     border-radius: 4px;
 
     &::first-letter {
@@ -70,6 +82,18 @@
     &:hover {
       cursor: pointer;
       border: 1px solid #ccc;
+    }
+  }
+
+  .filter__genres-item-selected {
+    font-size: 15px;
+    padding: 10px;
+    border: 1px solid #4b6df6;
+    background-color: #4b6df6;
+    border-radius: 4px;
+
+    &::first-letter {
+      text-transform: uppercase;
     }
   }
 
@@ -99,6 +123,43 @@
     transform: rotateX(0);
   }
 
+  &__genres-container-blocked {
+    pointer-events: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px;
+    height: 300px;
+    border: 2px solid #ccc;
+    text-align: left;
+    cursor: default;
+
+    .filter__button-genres {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .filter__genres-item {
+      pointer-events: none;
+      cursor: default;
+      font-size: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #ccc;
+      border-radius: 4px;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+
+      &:hover {
+        cursor: default;
+        border: 1px solid #ccc;
+      }
+    }
+  }
+
   // years dropdown styles
 
   &__years,
@@ -108,14 +169,7 @@
 
   &__years-container,
   &__rating-container {
-    width: 100%;
-    background-color: #fff;
-    position: absolute;
-    z-index: 5;
-    margin: 8px 0 0 0;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    text-align: center;
+    @include containerStyles();
   }
 
   &__years-item-selected,
@@ -125,9 +179,9 @@
     background-color: #4b6df6;
 
     &:hover {
-        cursor: pointer;
-        border: 1px solid #ccc;
-      }
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
   }
 
   &__years-item,
@@ -141,7 +195,18 @@
     }
   }
 
+  &__years-container-blocked,
+  &__rating-container-blocked {
+    @include containerStyles();
+    pointer-events: none;
+
+    .filter__years-item-selected,
+    .filter__rating-item-selected,
+    .filter__years-item,
+    .filter__rating-item {
+      background-color: #ccc;
+    }
+  }
+
   // Rating dropdown styles
-
-
 }

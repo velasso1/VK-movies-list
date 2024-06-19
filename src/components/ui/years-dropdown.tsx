@@ -1,7 +1,8 @@
 import { FC } from "react";
-import config from "../../../auxuliary.json";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { toggleYear } from "../../store/slices/movie-information-slice";
+
+import config from "../../../auxuliary.json";
 
 const YearsDropdown: FC = () => {
   const dispatch = useAppDispatch();
@@ -10,10 +11,14 @@ const YearsDropdown: FC = () => {
     (state) => state.movieInformation.toggleYears
   );
 
+  const requestStatus = useAppSelector((state) => state.movies.status);
+
   return (
     <div className="filter__years-dropdown">
       <div
-        className="filter__years-container"
+        className={`filter__years-container${
+          requestStatus === "dataReceived" ? "" : "-blocked"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {config.years.map((item, key) => {

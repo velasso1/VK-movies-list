@@ -1,6 +1,12 @@
-import { FC, useState, useEffect, MouseEvent } from "react";
-import { useAppDispatch } from "../store";
-import { getGenres } from "../store/slices/movie-information-slice";
+import { FC, useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../store";
+import {
+  getGenres,
+  writePageToState,
+} from "../store/slices/movie-information-slice";
+import { generateUrl } from "../utils/url-generator";
+import { getMovies } from "../store/slices/movies-slice";
+import { useParams } from "react-router-dom";
 
 import GenresDropdown from "./ui/genres-dropdown";
 import YearsDropdown from "./ui/years-dropdown";
@@ -15,12 +21,28 @@ type ILocalVisibleState = {
 
 const Filter: FC = () => {
   const dispatch = useAppDispatch();
+  const { page } = useParams<string>();
 
   const [visibleModal, setVisibleModal] = useState<ILocalVisibleState>({
     genres: false,
     years: false,
     rating: false,
   });
+
+  const movieInfoState = useAppSelector((state) => state.movieInformation);
+  const requestStatus = useAppSelector((state) => state.movies.status);
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, []);
+
+  useEffect(() => {
+    if (requestStatus === "dataReceived" && typeof page === "string") {
+      const url = generateUrl(movieInfoState, page);
+      dispatch(getMovies(page, url));
+      dispatch(writePageToState("1"));
+    }
+  }, [page, movieInfoState]);
 
   const visibleHandler = (item: string): void => {
     setVisibleModal({
@@ -30,10 +52,6 @@ const Filter: FC = () => {
       rating: item !== "rating" ? false : !visibleModal.rating,
     });
   };
-
-  useEffect(() => {
-    dispatch(getGenres());
-  }, []);
 
   return (
     <div className="filter">

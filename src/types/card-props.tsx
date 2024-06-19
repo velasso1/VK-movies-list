@@ -20,4 +20,5 @@ export interface IMovieItem {
 
 export interface ICardProps {
   docs: IMovieItem[];
+  pages: number;
 }

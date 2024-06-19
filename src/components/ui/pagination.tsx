@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useAppSelector } from "../../store";
 
 interface PaginationProps {
   page: number;
@@ -6,6 +7,8 @@ interface PaginationProps {
 }
 
 const Pagination: FC<PaginationProps> = ({ page, setPage }) => {
+  const pages: number = useAppSelector((state) => state.movies.pages);
+
   return (
     <div className="back-button">
       <button
@@ -19,6 +22,7 @@ const Pagination: FC<PaginationProps> = ({ page, setPage }) => {
       </button>
       <div className="page">{page}</div>
       <button
+        disabled={page >= pages ? true : false}
         className="next-page-button"
         onClick={() => {
           setPage(page + 1);

@@ -7,9 +7,9 @@
 // ============================================
 
 // GENERAL STYLES
- body {
-    font-family: 'Open Sans', sans-serif;
- }
+body {
+  font-family: "Open Sans", sans-serif;
+}
 // ============================================
 
 // IMPORT COMPONENT STYLES
@@ -19,4 +19,5 @@
 @import "./current-article.scss";
 @import "./start-page.scss";
 @import "./filter.scss";
+@import "./loader.scss";
 // ============================================

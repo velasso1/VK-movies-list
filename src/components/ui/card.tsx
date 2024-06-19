@@ -1,53 +1,43 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { IMovieItem } from "../../types/card-props";
-import { useNavigate } from "react-router-dom";
-import placeholderImage from "../../pictures/placeholder.webp";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch } from "../../store";
+import { writePageToState } from "../../store/slices/movie-information-slice";
 
 import Like from "./like-picture";
+import placeholderImage from "../../pictures/placeholder.webp";
 
 interface CardProps {
   movieItem: IMovieItem;
 }
 
 const Card: FC<CardProps> = ({ movieItem }) => {
-  // const [imageIsLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
+  const { page } = useParams<string>();
 
   const movieName = movieItem.name ? movieItem.name : movieItem.alternativeName;
   return (
     <div
       className="card"
-      onClick={() => navigate(`/current-card/${movieItem.id}`)}
+      onClick={() => {
+        if (typeof page === "string") {
+          dispatch(writePageToState(page));
+        }
+        navigate(`/current-card/${movieItem.id}`);
+      }}
     >
       <div className="card__id">Дата выхода: {movieItem.year}</div>
-      {/* <div className="card__id">
-        {!movieItem.genres || !movieItem ? (
-          <div>Loading</div>
-        ) : (
-          movieItem.genres.map((item, key) => {
-            return (
-              <>
-                <span key={key} className="card__genre">
-                  {item.name}
-                </span>{" "}
-              </>
-            );
-          })
-        )}
-      </div> */}
-
       <div className="card__image">
         <img
           loading="lazy"
           src={
-            !movieItem.poster
+            !movieItem.poster?.url
               ? `${placeholderImage}`
               : `${movieItem.poster.url}`
           }
           className="card__picture"
           alt={movieName}
-          // onLoad={() => setIsLoading(false)}
         />
       </div>
       <div className="card__about">{movieName}</div>
