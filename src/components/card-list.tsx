@@ -33,15 +33,6 @@ const CardList: FC = () => {
 
   const requestStatus = useAppSelector((state) => state.movies.status);
 
-  // const likedPosts: string[] = useAppSelector(
-  //   (state) => state.movies.likedMovies
-  // );
-
-  // const newCardInfo =
-  //   state.checked === true
-  //     ? cardInfo
-  //     : cardInfo.filter((item) => likedPosts.includes(item.id));
-
   return (
     <>
       {requestStatus === "dataReceived" ? (

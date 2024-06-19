@@ -21,18 +21,9 @@ const ArticlePage: FC = () => {
     (state) => state.movies.currentMovie
   );
 
-  // const returnHandler = (): void => {
-  //   navigate("/");
-  //   dispatch(clearOnePicture());
-  // };
-
   return (
     <>
-      <div className="back-button">
-        {/* <button className="return-button" onClick={() => returnHandler()}>
-          &#8592; Вернуться
-        </button> */}
-      </div>
+      <div className="back-button"></div>
       <CurrentArticle movieItem={movieItem} />
     </>
   );
