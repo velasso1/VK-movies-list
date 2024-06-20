@@ -18,7 +18,7 @@ const CardList: FC = () => {
 
   useEffect(() => {
     const url = generateUrl(movieInfoState, `${page}`);
-    dispatch(getMovies(url, `${page}`));
+    dispatch(getMovies(`${page}`, url));
     navigate(`/page/${page}`);
     window.scrollTo({
       top: 0,
