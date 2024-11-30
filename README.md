@@ -1,6 +1,8 @@
 # Тестовое задание для стажировки ВКонтакте
-## React + TypeScript + Vite Template
-### Автор: Александр Васин | Email: alexandr.vasin01@gmail.com | Telegram: https://t.me/reynold495
+---
+### Автор: Александр Васин
+### Email: alexandr.vasin01@gmail.com
+### Telegram: https://t.me/reynold495
 ---
 ## Для запуска приложения на твоём localhost:
 1. Склонируй репозиторий: `git clone https://github.com/velasso1/test-case-vk.git`
@@ -16,4 +18,6 @@
 4. SASS
 5. Dotenv
 ---
+## Использованные API:
+Kinopoisk API: `https://kinopoisk.dev/`
 
